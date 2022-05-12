@@ -1,0 +1,7 @@
+dist
+node_modules
+.env*
+!.env.example
+.wakatime-project
+/coverage
+.prettierignore
