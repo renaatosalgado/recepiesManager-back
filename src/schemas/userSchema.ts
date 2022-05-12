@@ -3,6 +3,6 @@ import { CreateUserData } from "../services/userService.js";
 
 export const userSchema = joi.object<CreateUserData>({
   name: joi.string().required(),
-  email: joi.string().required(),
+  email: joi.string().email().required(),
   password: joi.string().min(4).required(),
 });

@@ -16,6 +16,7 @@ model User {
   email    String    @unique
   password String
   recepies Recepie[]
+  session  Session?  @relation("sessionsTousers")
 
   @@map("users")
 }
@@ -60,4 +61,12 @@ model IngredientRecepie {
   quantity     Int
 
   @@map("ingredientsRecepies")
+}
+
+model Session {
+  id     Int  @id @default(autoincrement())
+  userId Int  @unique
+  user   User @relation("sessionsTousers", fields: [userId], references: [id])
+
+  @@map("sessions")
 }
