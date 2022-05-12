@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bluid": "tsc",
-    "start": "node src/server.js",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "npx nodemon src/server.ts",
     "dev-test": "dotenv -e .env.test npx nodemon src/server.ts",
     "test": "dotenv -e .env.test prisma db seed && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i -- --coverage",
