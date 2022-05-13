@@ -16,5 +16,5 @@ export function errorHandlerMiddleware(
     return res.status(errorTypeToStatusCode(err.type)).send(err.message);
   }
 
-  return res.sendStatus(500);
+  return res.status(500).send(err);
 }
