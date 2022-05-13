@@ -58,7 +58,7 @@ model IngredientRecepie {
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   measureId    Int
   measure      Measure    @relation(fields: [measureId], references: [id])
-  quantity     Int
+  quantity     Float
 
   @@map("ingredientsRecepies")
 }

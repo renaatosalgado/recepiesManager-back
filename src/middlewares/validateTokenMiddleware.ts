@@ -13,24 +13,20 @@ export async function validateTokenMiddleware(
 ) {
   const authorization = req.headers.authorization;
   const token = authorization?.replace("Bearer ", "");
-  console.log({ token });
   if (!token) throw unauthorizedError("Token inexistente.");
+
+  console.log({ token });
 
   const secretKey = process.env.JWT_SECRET;
 
   try {
     const data = jwt.verify(token, secretKey);
-    console.log({ data });
 
     const { sessionId } = data as JwtPayload;
-
-    console.log({ sessionId });
 
     if (!sessionId) throw unauthorizedError("Este token não é válido.");
 
     const session = await authService.getSessionById(sessionId);
-
-    console.log({ session });
 
     if (session === null) {
       console.log("eai");
@@ -40,10 +36,8 @@ export async function validateTokenMiddleware(
     }
 
     const user = await userService.findById(session.userId);
-    console.log({ user });
 
-    if (!user)
-      throw unauthorizedError("Usuário inexistente.");
+    if (!user) throw unauthorizedError("Usuário inexistente.");
 
     res.locals.user = user;
   } catch (error) {
