@@ -10,4 +10,10 @@ recepieRouter.get(
   recepieController.listAll
 );
 
+recepieRouter.get(
+  "/recepies/:recepieId",
+  validateTokenMiddleware,
+  recepieController.findSingleRecepie
+);
+
 export default recepieRouter;
