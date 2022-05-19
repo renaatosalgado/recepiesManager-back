@@ -18,4 +18,10 @@ recepieRouter.post(
   recepieController.addNewRecepie
 );
 
+recepieRouter.delete(
+  "/recepies/:recepieId/delete",
+  validateTokenMiddleware,
+  recepieController.deleteRecepie
+);
+
 export default recepieRouter;

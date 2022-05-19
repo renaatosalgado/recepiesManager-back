@@ -26,6 +26,14 @@ async function addNewRecepie(req: Request, res: Response) {
 
   await recepieService.createNewRecepie(ingredientsList, recepieInfo, user);
 
+  res.sendStatus(201);
+}
+
+async function deleteRecepie(req: Request, res: Response) {
+  const { recepieId } = req.params;
+
+  await recepieService.deleteRecepie(Number(recepieId));
+
   res.sendStatus(200);
 }
 
@@ -33,4 +41,5 @@ export default {
   listAll,
   findSingleRecepie,
   addNewRecepie,
+  deleteRecepie,
 };

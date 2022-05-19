@@ -62,10 +62,25 @@ async function insertIngredient(
   });
 }
 
+async function deleteOne(recepieId: number) {
+  await prisma.ingredientRecepie.deleteMany({
+    where: {
+      recepieId,
+    },
+  });
+
+  await prisma.recepie.delete({
+    where: {
+      id: recepieId,
+    },
+  });
+}
+
 export default {
   listAll,
   findById,
   findByName,
   insertOne,
   insertIngredient,
+  deleteOne,
 };

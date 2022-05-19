@@ -11,7 +11,8 @@
     "dev-test": "dotenv -e .env.test npx nodemon src/server.ts",
     "test": "dotenv -e .env.test prisma db seed && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i -- --coverage",
     "prisma": "npx prisma studio",
-    "prisma-test": "dotenv -e .env.test npx prisma studio"
+    "prisma-test": "dotenv -e .env.test npx prisma studio",
+    "dev:migrate": "npx prisma migrate dev && nodemon index.js"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

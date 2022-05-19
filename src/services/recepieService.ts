@@ -102,6 +102,10 @@ async function addIngredients(
   });
 }
 
+async function deleteRecepie(recepieId: number) {
+  await recepieRepository.deleteOne(recepieId);
+}
+
 function normalizeQuantity(quantity: string) {
   if (quantity.includes("/")) {
     const first = Number(quantity[0]);
@@ -119,10 +123,9 @@ function normalizeString(text: string) {
     .toLowerCase();
 }
 
-//"https://ricardometring.com/javascript-replace-special-characters";
-
 export default {
   listAll,
   findSingleRecepie,
   createNewRecepie,
+  deleteRecepie,
 };
