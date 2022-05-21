@@ -29,7 +29,6 @@ export async function validateTokenMiddleware(
     const session = await authService.getSessionById(sessionId);
 
     if (session === null) {
-      console.log("eai");
       throw unauthorizedError(
         "Sessão encerrada, por favor faça login novamente."
       );
