@@ -75,14 +75,12 @@ async function addIngredients(
 ) {
   const parsedRecepieName = normalizeString(recepieInfo.name);
   const recepie = await recepieRepository.findByName(parsedRecepieName);
-  console.log({ recepie });
 
   ingredientsList.forEach(async (ingredient) => {
     const parsedIngredientName = normalizeString(ingredient.ingredient);
     const ingredientResult = await ingredientRepository.findByName(
       parsedIngredientName
     );
-    console.log({ ingredientResult });
 
     const parsedMeasureName = normalizeString(ingredient.measure);
     const measuresResult = await measureRepository.findByName(
@@ -90,8 +88,6 @@ async function addIngredients(
     );
 
     const parsedQuantity = normalizeQuantity(ingredient.quantity);
-    console.log({ measuresResult });
-    console.log({ parsedQuantity });
 
     await recepieRepository.insertIngredient(
       recepie.id,
@@ -104,6 +100,17 @@ async function addIngredients(
 
 async function deleteRecepie(recepieId: number) {
   await recepieRepository.deleteOne(recepieId);
+}
+
+async function getIngredientsList(ids: number[]) {
+  const recepies = [];
+
+  for (let i = 0; i < ids.length; i++) {
+    const recepie = await findSingleRecepie(ids[i]);
+    recepies.push(recepie.ingredientsRecepies);
+  }
+
+  return recepies;
 }
 
 function normalizeQuantity(quantity: string) {
@@ -128,4 +135,5 @@ export default {
   findSingleRecepie,
   createNewRecepie,
   deleteRecepie,
+  getIngredientsList,
 };

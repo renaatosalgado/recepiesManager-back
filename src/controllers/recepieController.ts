@@ -37,9 +37,24 @@ async function deleteRecepie(req: Request, res: Response) {
   res.sendStatus(200);
 }
 
+async function listAllIngredients(req: Request, res: Response) {
+  const { ids } = req.query;
+  const numberedIdsArr = ids
+    .toString()
+    .split(",")
+    .map((id) => {
+      return Number(id);
+    });
+
+  const allRecepies = await recepieService.getIngredientsList(numberedIdsArr);
+
+  res.status(200).send(allRecepies);
+}
+
 export default {
   listAll,
   findSingleRecepie,
   addNewRecepie,
   deleteRecepie,
+  listAllIngredients,
 };

@@ -10,7 +10,7 @@ recepieRouter.use(validateTokenMiddleware);
 
 recepieRouter.get("/recepies", recepieController.listAll);
 
-recepieRouter.get("/recepies/:recepieId", recepieController.findSingleRecepie);
+recepieRouter.get("/recepies/:recepieId/single", recepieController.findSingleRecepie);
 
 recepieRouter.post(
   "/recepies",
@@ -22,6 +22,11 @@ recepieRouter.delete(
   "/recepies/:recepieId/delete",
   validateTokenMiddleware,
   recepieController.deleteRecepie
+);
+
+recepieRouter.get(
+  "/recepies/ingredients",
+  recepieController.listAllIngredients
 );
 
 export default recepieRouter;
