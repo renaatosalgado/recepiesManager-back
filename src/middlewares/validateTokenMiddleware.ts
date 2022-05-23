@@ -15,8 +15,6 @@ export async function validateTokenMiddleware(
   const token = authorization?.replace("Bearer ", "");
   if (!token) throw unauthorizedError("Token inexistente.");
 
-  console.log({ token });
-
   const secretKey = process.env.JWT_SECRET;
 
   try {
